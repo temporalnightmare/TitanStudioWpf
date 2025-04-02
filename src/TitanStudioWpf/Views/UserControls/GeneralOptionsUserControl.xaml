@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="TitanStudioWpf.Views.UserControls.GeneralOptionsUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TitanStudioWpf.Views.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- GAME PATH -->
+        <StackPanel Orientation="Vertical" Margin="10" Grid.ColumnSpan="2">
+            <TextBlock Text="Game File" />
+
+            <DockPanel LastChildFill="True" Margin="0 0 0 5">
+                <Button 
+                    DockPanel.Dock="Right"                                         
+                    Content="{materialDesign:PackIcon Kind=Folder}" 
+                    Command="{Binding SetGamePathCommand}"                    
+                    Margin="5 0 0 0" />
+                <TextBox
+                    Text="{Binding GamePath, UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
+        </StackPanel>
+
+        <!-- FONTS AND COLORS -->
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="10">
+            <DockPanel LastChildFill="True" Margin="0 0 0 5">
+                <ComboBox
+                    materialDesign:HintAssist.Hint="Select Font"
+                    Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                    ItemsSource="{Binding Fonts}"
+                    Text="{Binding FontName, UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
+        </StackPanel>
+
+        <!-- DO I STILL WANT IT?
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="10" Grid.ColumnSpan="2">
+            <TextBlock Text="Logs File Folder" />
+
+            <DockPanel LastChildFill="True" Margin="0 0 0 5">
+                <Button 
+                    DockPanel.Dock="Right"                                         
+                    Content="{materialDesign:PackIcon Kind=Folder}" 
+                    Command="{Binding SetLogPathCommand}"                    
+                    Margin="5 0 0 0" />
+              
+                <TextBox
+                    IsReadOnly="True"
+                    Text="{Binding LogPath, UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
+       
+        </StackPanel> -->
+    </Grid>
+</UserControl>

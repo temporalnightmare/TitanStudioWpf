@@ -1,0 +1,28 @@
+namespace TSSchema;
+
+table RootObject {
+  table:[CharacterMapping];
+}
+
+table CharacterMapping {
+  id:ushort;
+  attire_num:byte;
+  
+  character_path:ulong;
+  attire_path:ulong;
+
+  basemodel_mdl_path:ulong;
+  basemodel_mtls_path:ulong;
+
+  attire_mdl_path:ulong;
+  attire_mtls_path:ulong;
+
+  cas_basemodel_mdl_path:ulong;
+
+  default:bool;
+  unk2:ubyte;
+}
+
+root_type RootObject;
+file_identifier "Char";
+file_extension "jsfb";

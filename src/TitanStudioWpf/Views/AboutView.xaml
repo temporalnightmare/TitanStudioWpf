@@ -1,0 +1,82 @@
+﻿<Window x:Class="TitanStudioWpf.Views.AboutView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TitanStudioWpf.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Style="{StaticResource MaterialDesignWindow}" WindowStartupLocation="CenterScreen"
+        Icon="/TitanStudioWpf.Core;component/Resources/Icons/AppIcon.ico"
+        Title="About TitanSTUDIO" Height="450" Width="800"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="14">
+    <materialDesign:Card Margin="16" VerticalAlignment="Stretch">
+        <Grid Margin="24,16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{Binding AppName}"
+                       Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                       Margin="0,0,0,8" />
+
+            <TextBlock Grid.Row="1"
+                       Text="{Binding AppVersion}"
+                       Style="{StaticResource MaterialDesignBody1TextBlock}"
+                       Opacity="0.87"
+                       Margin="0,0,0,24" />
+
+            <StackPanel Grid.Row="2" Margin="0,0,0,16">
+                <TextBlock Text="Credits"
+                           Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                           Margin="0,0,0,16" />
+
+                <materialDesign:Card Margin="0,8" Padding="16">
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap">
+                            <Run Text="Nenkai " />
+                            <Hyperlink NavigateUri="https://github.com/Nenkai"
+                                       Style="{StaticResource MaterialDesignBody1Hyperlink}">
+                                (github.com/Nenkai)
+                            </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <materialDesign:Card Margin="0,8" Padding="16">
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap">
+                            <Run Text="MikeMods2K " />
+                            <Hyperlink NavigateUri="https://x.com/MikeMods2K"
+                                        Style="{StaticResource MaterialDesignBody1Hyperlink}">
+                                (x.com/MikeMods2K)
+                            </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <materialDesign:Card Margin="0,8" Padding="16">
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap">
+                <Run Text="To everyone who have tried to support me even when others wouldn't, thank you. " />
+                        </TextBlock>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                <!-- Button -->
+                <Button Grid.Row="3"
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    Command="{Binding CloseCommand}"
+                    Content="OK"
+                    HorizontalAlignment="Right"
+                    Width="100"/>
+            </StackPanel>
+        </Grid>
+    </materialDesign:Card>
+</Window>

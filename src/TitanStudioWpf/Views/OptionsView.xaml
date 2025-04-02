@@ -1,0 +1,68 @@
+﻿<Window x:Class="TitanStudioWpf.Views.OptionsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TitanStudioWpf.Views" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Style="{StaticResource MaterialDesignWindow}"
+        Title="Options" Height="550" Width="900"
+        Icon="/TitanStudioWpf.Core;component/Resources/Icons/AppIcon.ico">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- TreeView -->
+        <TreeView 
+            Grid.RowSpan="1"                  
+            ItemsSource="{Binding OptionItems}" 
+            SelectedItemChanged="TreeView_SelectedItemChanged"
+            Style="{StaticResource MaterialDesignTreeView}"
+            Background="{DynamicResource MaterialDesignPaper}">
+            <TreeView.Resources>
+                <Style TargetType="TreeViewItem" BasedOn="{StaticResource MaterialDesignTreeViewItem}">
+                    <Setter Property="IsExpanded" Value="True"/>
+                    <Setter Property="Padding" Value="8,4"/>
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="TreeViewItem.Collapsed">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsExpanded">
+                                        <DiscreteBooleanKeyFrame KeyTime="0" Value="True"/>
+                                    </BooleanAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TreeView.Resources>
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                    <StackPanel Orientation="Horizontal" Margin="0,2">
+                        <TextBlock 
+                            Text="{Binding Name}" 
+                            VerticalAlignment="Center"
+                            Style="{StaticResource MaterialDesignBody1TextBlock}"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
+        <!-- Content Area -->
+        <ContentControl Grid.Row="0" Content="{Binding SelectedContent}" Grid.Column="1" Margin="10"/>
+
+        <!-- Controls -->
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+            <Button x:Name="SaveChanges" Margin="5" Content="Save Changes" Command="{Binding SaveOptionsCommand}" />
+            <Button x:Name="CancelChanges" Margin="5" Content="Cancel" Command="{Binding CancelSaveOptionsCommand}" />
+        </StackPanel>
+    </Grid>
+</Window>

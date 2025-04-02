@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Icons\AppIcon.ico" />
+    <None Remove="Schemas\WWE2K24\CharacterMapping_WWE2K24.fbs" />
+    <None Remove="Schemas\WWE2K24\FaceTextures_WWE2K24.fbs" />
+    <None Remove="Schemas\WWE2K25\CharacterMapping_WWE2K25.fbs" />
+    <None Remove="Schemas\WWE2K25\FaceTextures_WWE2K25.fbs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Resources\Theme.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Schemas\WWE2K24\CharacterMapping_WWE2K24.fbs" />
+    <EmbeddedResource Include="Schemas\WWE2K24\FaceTextures_WWE2K24.fbs" />
+    <EmbeddedResource Include="Schemas\WWE2K25\CharacterMapping_WWE2K25.fbs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schemas\WWE2K25\FaceTextures_WWE2K25.fbs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="9.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.3" />
+    <PackageReference Include="Velopack" Version="0.0.1053" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Theme.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\AppIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helpers\Converters\" />
+    <Folder Include="Resources\Thirdparty\" />
+  </ItemGroup>
+
+</Project>

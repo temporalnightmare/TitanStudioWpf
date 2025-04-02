@@ -1,0 +1,21 @@
+namespace TSSchema;
+
+table FaceTextures {
+  renders:[FaceTexture];
+}
+
+table FaceTexture {
+  id:ushort;
+  renders:[Render];
+}
+
+
+table Render
+{
+  attire_id:uint;
+  path:ulong;
+}
+
+root_type FaceTextures;
+file_identifier "Play";
+file_extension "jsfb";

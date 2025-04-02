@@ -1,0 +1,65 @@
+﻿<Window x:Class="TitanStudioWpf.Views.Tools.ToolHasherView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TitanStudioWpf.Views.Tools"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Style="{StaticResource MaterialDesignWindow}"
+        Title="Hasher" Height="250" Width="800" WindowStartupLocation="CenterScreen"
+        Icon="/TitanStudioWpf.Core;component/Resources/Icons/AppIcon.ico">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Input -->
+        <TextBlock Text="String Input"/>
+
+        <TextBox Grid.Row="1"
+                 Name="HashInput"                  
+                 Margin="0,0,0,20"                    
+                 Text="{Binding StringInput, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Button Grid.Row="1" Grid.Column="1" 
+                Name="BrowseFile" 
+                Margin="10,0,0,20"
+                Width="60"
+                Content="{materialDesign:PackIcon Kind=File}"
+                Command="{Binding SetFilePathCommand}" />
+
+        <Button Grid.Row="1" Grid.Column="2" 
+                Name="BrowseFolder" 
+                Margin="0,0,0,20"
+                Width="60"
+                Content="{materialDesign:PackIcon Kind=Folder}"
+                Command="{Binding SetFolderPathCommand}"/>
+
+        <!--- Output -->
+        <TextBlock Grid.Row="2" Text="Output Hash" />
+
+        <TextBox Grid.Row="3" Grid.ColumnSpan="3"
+                 Name="HashOutput" 
+                 Margin="0,0,0,20" 
+                 Text="{Binding HashOutput}" 
+                 IsReadOnly="True"/>
+
+        <!-- Buttons -->
+        <Button Grid.Row="4" Grid.Column="2" 
+                HorizontalAlignment="Right"
+                Name="GenerateHash"
+                Content="Generate" 
+                Command="{Binding GenerateHashCommand}"/>
+    </Grid>
+</Window>

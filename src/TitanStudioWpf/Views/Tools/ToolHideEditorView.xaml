@@ -1,0 +1,204 @@
+﻿<Window x:Class="TitanStudioWpf.Views.Tools.ToolHideEditorView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TitanStudioWpf.Views.Tools"
+        xmlns:viewModel="clr-namespace:TitanStudioWpf.ViewModels" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Style="{StaticResource MaterialDesignWindow}"
+        Title="Hide File Editor" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        Icon="/TitanStudioWpf.Core;component/Resources/Icons/AppIcon.ico">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- File Operations -->
+        <StackPanel Grid.ColumnSpan="1" Orientation="Horizontal" Margin="0,5,5,5">
+            <Button 
+                x:Name="OpenHideFile" 
+                Content="Open Hide File" 
+                Margin="0,0,10,0"
+                Command="{Binding OpenHideFileCommand}" />
+            <ComboBox x:Name="GameType"                 
+                      Margin="0,0,10,0" 
+                      Width="200"
+                      SelectedIndex="{Binding SelectedGameIndex}">
+                <ComboBoxItem Content="WWE 2K24"/>
+                <ComboBoxItem Content="WWE 2K25"/>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- WWE 2K24 Grid -->
+        <Grid 
+            Name="GridWWE2K24" Grid.Row="1" Margin="10,0"
+            Visibility="{Binding IsWWE2K24Selected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- MyFACTION Column -->
+            <GroupBox Header="MyFACTION" Style="{StaticResource CategoryGroupBoxStyle}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl ItemsSource="{Binding WWE2K24MyFactionItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox  
+                                    Content="{Binding Label}"
+                                    IsChecked="{Binding IsChecked}"
+                                    Command="{Binding DataContext.ToggleFlagItemCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </GroupBox>
+
+            <!-- MyRISE Column -->
+            <GroupBox Grid.Column="1" Header="MyRISE" Style="{StaticResource CategoryGroupBoxStyle}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl ItemsSource="{Binding WWE2K24MyRiseItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox 
+                                    Content="{Binding Label}"
+                                    IsChecked="{Binding IsChecked}"
+                                    Command="{Binding DataContext.ToggleFlagItemCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </GroupBox>
+
+
+            <!-- SHOWCASE Column -->
+            <GroupBox Grid.Column="2" Header="SHOWCASE" Style="{StaticResource CategoryGroupBoxStyle}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl ItemsSource="{Binding WWE2K24ShowcaseItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox
+                                    Content="{Binding Label}"
+                                    IsChecked="{Binding IsChecked}"
+                                     Command="{Binding DataContext.ToggleFlagItemCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </GroupBox>
+
+            <!-- VC PURCHASABLES Column -->
+            <GroupBox Grid.Column="3" Header="VC" Style="{StaticResource CategoryGroupBoxStyle}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl ItemsSource="{Binding WWE2K24VCPurchasableItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox 
+                                    Content="{Binding Label}"
+                                    IsChecked="{Binding IsChecked}"
+                                    Command="{Binding DataContext.ToggleFlagItemCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </GroupBox>
+        </Grid>
+        
+        <!-- WWE 2K25 Grid -->
+        <Grid 
+            Name="GridWWE2K25" Grid.Row="1" Margin="10,0"
+            Visibility="{Binding IsWWE2K25Selected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- MyFACTION Column -->
+            <GroupBox Header="MyFACTION" Style="{StaticResource CategoryGroupBoxStyle}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl ItemsSource="{Binding WWE2K25MyFactionItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox 
+                                    Content="{Binding Label}"
+                                    IsChecked="{Binding IsChecked}"
+                                    Command="{Binding DataContext.ToggleFlagItemCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"/>        
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </GroupBox>
+
+            <!-- MyRISE Column -->
+            <GroupBox Grid.Column="1" Header="MyRISE" Style="{StaticResource CategoryGroupBoxStyle}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl ItemsSource="{Binding WWE2K25MyRiseItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox 
+                                    Content="{Binding Label}"
+                                    IsChecked="{Binding IsChecked}"
+                                    Command="{Binding DataContext.ToggleFlagItemCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </GroupBox>
+
+            <!-- SHOWCASE Column -->
+            <GroupBox Grid.Column="2" Header="SHOWCASE" Style="{StaticResource CategoryGroupBoxStyle}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl ItemsSource="{Binding WWE2K25ShowcaseItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox 
+                                    
+                                    Content="{Binding Label}"
+                                    IsChecked="{Binding IsChecked}"
+                                    Command="{Binding DataContext.ToggleFlagItemCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </GroupBox>
+
+            <!-- VC PURCHASABLES Column -->
+            <GroupBox Grid.Column="3" Header="VC" Style="{StaticResource CategoryGroupBoxStyle}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl ItemsSource="{Binding WWE2K25VCPurchasableItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox 
+                                    Content="{Binding Label}"
+                                    IsChecked="{Binding IsChecked}"
+                                    Command="{Binding DataContext.ToggleFlagItemCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </GroupBox>
+        </Grid>
+
+        <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding StatusMessage}" />
+    </Grid>
+</Window>
